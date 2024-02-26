@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
 
 interface MovieProps {
@@ -7,11 +7,16 @@ interface MovieProps {
   searchParams: {};
 }
 
+export const generateMetadata = async (props: MovieProps) => {
+  const { id } = props.params;
+  const movie = await getMovie(id);
+  return { title: movie.title };
+};
+
 const MovieDetail = async (props: MovieProps) => {
   const id = props.params.id;
   return (
     <div>
-      <h3>Movie detail page</h3>
       <Suspense fallback={<h1>Loading movie info</h1>}>
         {/* @ts-expect-error Async Server Component */}
         <MovieInfo id={id}></MovieInfo>

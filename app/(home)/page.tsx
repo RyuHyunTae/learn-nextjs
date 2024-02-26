@@ -1,4 +1,9 @@
-import Link from "next/link";
+import Movie from "../../components/Movie";
+import style from "../../styles/home.module.css";
+
+export const metadata = {
+  title: "Home",
+};
 
 export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
@@ -11,11 +16,9 @@ const getMoives = async () => {
 const HomePage = async () => {
   const movies = await getMoives();
   return (
-    <div>
+    <div className={style.container}>
       {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
+        <Movie key={movie.id} id={movie.id} poster_path={movie.poster_path} title={movie.title} />
       ))}
     </div>
   );
