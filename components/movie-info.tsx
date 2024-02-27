@@ -1,4 +1,4 @@
-import { API_URL } from "../app/(home)/page";
+import { API_URL } from "../app/constants";
 import style from "../styles/movie-info.module.css";
 
 export const getMovie = async (id: string) => {
@@ -8,7 +8,6 @@ export const getMovie = async (id: string) => {
 
 const MovieInfo = async ({ id }: { id: string }) => {
   const movie = await getMovie(id);
-
   return (
     <div className={style.container}>
       <img src={movie.poster_path} alt={movie.title} className={style.poster}></img>

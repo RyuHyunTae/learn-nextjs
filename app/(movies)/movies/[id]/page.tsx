@@ -18,11 +18,9 @@ const MovieDetail = async (props: MovieProps) => {
   return (
     <div>
       <Suspense fallback={<h1>Loading movie info</h1>}>
-        {/* @ts-expect-error Async Server Component */}
         <MovieInfo id={id}></MovieInfo>
       </Suspense>
       <Suspense fallback={<h1>Loading movie videos</h1>}>
-        {/* @ts-expect-error Async Server Component */}
         <MovieVideos id={id}></MovieVideos>
       </Suspense>
     </div>
